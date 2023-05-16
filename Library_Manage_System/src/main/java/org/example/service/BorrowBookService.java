@@ -15,7 +15,7 @@ public class BorrowBookService implements IBorrowBookService {
     String filename1 = "data/book.csv";
     List<Borrowbook> listBorrowBook =new ArrayList<>();
     List<Book> listBook = new ArrayList<>();
-    List<Borrowbook> listBorrowBookByUser = new ArrayList<>();
+
 
     BookService bookService =new BookService();
     @Override
@@ -63,6 +63,7 @@ public class BorrowBookService implements IBorrowBookService {
         borrowbook.setExpDate(date.plusDays(7));
         borrowbook.setUserid(user.getId());
         book.setQuantity(book.getQuantity() - 1);
+        bookService.changeBookStatus(bookid);
         listBorrowBook.add(borrowbook);
         CSVUltis.write(filename1, listBook);
         CSVUltis.write(filename, listBorrowBook);
@@ -78,14 +79,15 @@ public class BorrowBookService implements IBorrowBookService {
         CSVUltis.write(filename1, listBook);
     }
     public List<Borrowbook> displayBorrowBook(User user){
+        List<Borrowbook> listBorrowBookByUser = new ArrayList<>();
         listBorrowBook = getBorrowBook();
         int id = user.getId();
         for(Borrowbook borrowbook: listBorrowBook ){
             if (id == borrowbook.getUserid()){
                 listBorrowBookByUser.add(borrowbook);
             }
-            return listBorrowBookByUser;
+
         }
-        return null;
+        return listBorrowBookByUser;
     }
 }

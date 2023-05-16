@@ -18,14 +18,14 @@ public class UserView {
     BorrowBookService borrowBookService = new BorrowBookService();
     public static void renderView() {
         System.out.println();
-        System.out.println("⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ");
-        System.out.println("⚪                                                        ⚪");
-        System.out.println("⚪             1.    Show User Account                    ⚪");
-        System.out.println("⚪             2.    Show Borrowed Book List              ⚪");
-        System.out.println("⚪             3.    Confirm Return Borrowed Book         ⚪");
-        System.out.println("⚪             4.    Exit                                 ⚪");
-        System.out.println("⚪                                                        ⚪");
-        System.out.println("⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ");
+        System.out.println("╔══════════════════════════════════════════════════════════╗");
+        System.out.println("                                                            ");
+        System.out.println("               [1]    Show User Account                      ");
+        System.out.println("               [2]    Show Borrowed Book List                ");
+        System.out.println("               [3]    Confirm Return Borrowed Book           ");
+        System.out.println("               [4]    Exit                                   ");
+        System.out.println("                                                            ");
+        System.out.println("╚══════════════════════════════════════════════════════════╝");
         System.out.println();
     }
     public void showUserAccount(){

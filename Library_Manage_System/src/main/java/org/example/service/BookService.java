@@ -40,7 +40,7 @@ public class BookService {
     }
 
 
-    public Book getBookDetail(long bookid) {
+    public Book getBookDetail(int bookid) {
         list = getListBook();
         for (Book book: list){
             if (book.getId() == bookid){
@@ -59,7 +59,7 @@ public class BookService {
     }
 
 
-    public void delete(long bookid) {
+    public void delete(int bookid) {
         list = getListBook();
         Book book = getBookDetail(bookid);
         list.remove(book);
@@ -81,7 +81,7 @@ public class BookService {
     }
 
 
-    public void changeBookStatus(long bookid) {
+    public void changeBookStatus(int bookid) {
         list = getListBook();
         Book book = getBookDetail(bookid);
         if(book.getQuantity() == 0){
@@ -93,7 +93,7 @@ public class BookService {
     }
 
 
-    public boolean checkBookStatus(long bookid) {
+    public boolean checkBookStatus(int bookid) {
         list = getListBook();
         Book book = getBookDetail(bookid);
             return book.getStatus() == Status.INSTOCK;

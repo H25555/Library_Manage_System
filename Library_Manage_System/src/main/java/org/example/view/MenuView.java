@@ -22,11 +22,8 @@ public class MenuView {
 
             if (loginView.checkRole().equals(Role.ADMIN)){
                 adminView.select();
-//                System.out.println("admin");
             } else {
-//                System.out.println("customer");
-                userServices.getMessage(loginView.currentUser);
-                customerView.select();
+                getMessage();
             }
         } else {
             System.out.println("Wrong Phonenumber or Password!! Please Enter A Valid Account!");
@@ -63,7 +60,7 @@ public class MenuView {
     }
     public static void menuMain() {
         System.out.println();
-        System.out.println(" \u001B[35m                 LIBRARY APLICATION    \u001B[0m");
+        System.out.println("\u001B[35m                  LIBRARY APLICATION    \u001B[0m");
         System.out.println();
         System.out.println("\u001B[35m            ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪\u001B[0m");
         System.out.println("\u001B[35m            ⚪    1.    Signin           ⚪\u001B[0m");
@@ -75,5 +72,25 @@ public class MenuView {
     }
     public void exit(){
         System.exit(0);
+    }
+    public void getMessage(){
+        String message = "\u001B[33m PLEASE RETURN YOUR BORROWED BOOK ON TIME! \u001B[0m";
+        userServices.getMessage(loginView.currentUser, message);
+        checkContinue();
+    }
+    public void checkContinue() {
+        System.out.println("Do you want to Continue?? Y/N");
+        String check = scanner.next();
+        switch (check){
+            case "y":
+                customerView.select();
+                break;
+            case "n":
+                select();
+                break;
+            default:
+                System.out.println("Invalid!");
+                checkContinue();
+        }
     }
 }

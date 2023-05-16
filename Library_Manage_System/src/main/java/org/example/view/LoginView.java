@@ -13,28 +13,29 @@ public class LoginView {
     private AuthService authService = new AuthService();
     private UserServices userServices = new UserServices();
     public static User currentUser = new User();
+    MenuView menuView = new MenuView();
     public boolean signin(){
             String phonenumber, password;
             Scanner scanner = new Scanner(System.in);
             do {
                 System.out.println("Enter Phonenumber:");
                 phonenumber = scanner.nextLine();
-            } while (phonenumber == "");
+            }  while (!ValidateUtils.isPhoneValid(phonenumber));
             do {
                 System.out.println("Enter Password:");
                 password = scanner.nextLine();
 
             } while (password == "");
-
-
         boolean checkLogin = authService.signin(phonenumber, password);
         User user = userServices.getUserDetailByPhoneNumber(phonenumber);
-        currentUser = user;
+
         userServices.handleExpiredAccount(user);
         if (user.getUserStatus().equals(UserStatus.DENY)){
-            checkLogin = false;
+//            checkLogin = false;
             System.out.println("Please Return Your Borrowed Book To Library !!!");
+            menuView.select();
         }
+        currentUser = user;
         return checkLogin;
     }
     public void signup(){

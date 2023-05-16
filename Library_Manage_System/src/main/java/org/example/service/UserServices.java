@@ -14,14 +14,14 @@ import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
-public class UserServices implements IUserServices {
+public class UserServices  {
     List<User> list = new ArrayList<>();
     List<Borrowbook> borrowbookList = new ArrayList<>();
     BorrowBookService borrowBookService = new BorrowBookService();
     String filename = "data/user.csv";
 
 
-    @Override
+//    @Override
     public List<User> getListUser() {
         List<User> newUserList = new ArrayList<>();
         List<String> reads = CSVUltis.read(filename);
@@ -46,7 +46,7 @@ public class UserServices implements IUserServices {
 
     }
 
-    @Override
+//    @Override
     public User getUserDetail(long userid) {
         list = getListUser();
         for (User user : list) {
@@ -57,7 +57,7 @@ public class UserServices implements IUserServices {
         return null;
     }
 
-    @Override
+//    @Override
     public User getUserDetailByPhoneNumber(String phonenumber) {
         list = getListUser();
         for (User user : list) {
@@ -68,7 +68,7 @@ public class UserServices implements IUserServices {
         return null;
     }
 
-    @Override
+//    @Override
     public void add(User newuser) {
         list = getListUser();
         list.add(newuser);
@@ -85,34 +85,35 @@ public class UserServices implements IUserServices {
         }
     }
 
-    @Override
-    public void delete(long userid) {
-        list = getListUser();
-        User user = getUserDetail(userid);
-        list.remove(user);
-        CSVUltis.write(filename,list);
-
-    }
-
-    @Override
-    public void edit(long userid, User updateuser) {
-        list = getListUser();
-        for (User user: list){
-            if (user.getId() == userid){
-                user.setName(updateuser.getName());
-                user.setPassword(updateuser.getPassword());
-                user.setRole(updateuser.getRole());
-
-            }
-        }
-        CSVUltis.write(filename,list);
-
-    }
+//    @Override
+//    public void delete(long userid) {
+//        list = getListUser();
+//        User user = getUserDetail(userid);
+//        list.remove(user);
+//        CSVUltis.write(filename,list);
+//
+//    }
+//
+//    @Override
+//    public void edit(long userid, User updateuser) {
+//        list = getListUser();
+//        for (User user: list){
+//            if (user.getId() == userid){
+//                user.setName(updateuser.getName());
+//                user.setPassword(updateuser.getPassword());
+//                user.setRole(updateuser.getRole());
+//
+//            }
+//        }
+//        CSVUltis.write(filename,list);
+//
+//    }
     public void handleExpiredAccount(User user){
         borrowbookList = borrowBookService.displayBorrowBook(user);
         for (Borrowbook borrowbook : borrowbookList){
             if(borrowbook.getExpDate().isBefore(LocalDate.now())){
                 user.setUserStatus(UserStatus.DENY);
+                break;
             } else {
                 user.setUserStatus(UserStatus.ALLOW);
             }
@@ -125,11 +126,11 @@ public class UserServices implements IUserServices {
         }
         CSVUltis.write(filename,list);
     }
-    public void getMessage(User user){
+    public void getMessage(User user, String message){
         borrowbookList = borrowBookService.displayBorrowBook(user);
         for (Borrowbook borrowbook : borrowbookList){
-            if (borrowbook.getExpDate().minusDays(1).equals(LocalDate.now())){
-                System.out.println("The Expired Date To Return Book is Tommorrow!!");
+            if (borrowbook.getExpDate().minusDays(1).equals(LocalDate.now()) || borrowbook.getExpDate().equals(LocalDate.now())){
+                System.out.println(message);
                 System.out.println();
             }
         }

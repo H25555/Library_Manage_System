@@ -50,15 +50,15 @@ public class BookView {
     }
     public static void renderView() {
         System.out.println();
-        System.out.println("⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ");
-        System.out.println("⚪                                               ⚪");
-        System.out.println("⚪             1.    Show Library                ⚪");
-        System.out.println("⚪             2.    Add Book                    ⚪");
-        System.out.println("⚪             3.    Delete Book                 ⚪");
-        System.out.println("⚪             4.    Edit Book                   ⚪");
-        System.out.println("⚪             5.    Exit                        ⚪");
-        System.out.println("⚪                                               ⚪");
-        System.out.println("⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ⚪ ");
+        System.out.println("╔══════════════════════════════════════════════════╗");
+        System.out.println("                                                   ");
+        System.out.println("               [1]    Show Library                  ");
+        System.out.println("               [2]    Add Book                      ");
+        System.out.println("               [3]    Delete Book                   ");
+        System.out.println("               [4]    Edit Book                     ");
+        System.out.println("               [5]    Exit                          ");
+        System.out.println("                                                   ");
+        System.out.println("╚══════════════════════════════════════════════════╝");
     }
     public void showBook(){
         List<Book> bookList = bookService.getListBook();
