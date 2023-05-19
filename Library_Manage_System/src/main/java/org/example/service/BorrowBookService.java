@@ -15,8 +15,6 @@ public class BorrowBookService implements IBorrowBookService {
     String filename1 = "data/book.csv";
     List<Borrowbook> listBorrowBook =new ArrayList<>();
     List<Book> listBook = new ArrayList<>();
-
-
     BookService bookService =new BookService();
     @Override
     public List<Borrowbook> getBorrowBook() {
@@ -86,7 +84,6 @@ public class BorrowBookService implements IBorrowBookService {
             if (id == borrowbook.getUserid()){
                 listBorrowBookByUser.add(borrowbook);
             }
-
         }
         return listBorrowBookByUser;
     }

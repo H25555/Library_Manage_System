@@ -27,6 +27,7 @@ public class LoginView {
 
             } while (password == "");
         boolean checkLogin = authService.signin(phonenumber, password);
+        if(checkLogin){
         User user = userServices.getUserDetailByPhoneNumber(phonenumber);
 
         userServices.handleExpiredAccount(user);
@@ -36,6 +37,7 @@ public class LoginView {
             menuView.select();
         }
         currentUser = user;
+        }
         return checkLogin;
     }
     public void signup(){

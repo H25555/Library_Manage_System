@@ -93,7 +93,7 @@ public class BookService {
     }
 
 
-    public boolean checkBookStatus(int bookid) {
+    public boolean  checkBookStatus(int bookid) {
         list = getListBook();
         Book book = getBookDetail(bookid);
             return book.getStatus() == Status.INSTOCK;
