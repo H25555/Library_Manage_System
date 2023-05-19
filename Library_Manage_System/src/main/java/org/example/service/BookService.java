@@ -49,7 +49,15 @@ public class BookService {
         }
         return null;
     }
-
+    public List<Book> updateListBook(List<Book> list, Book book){
+        for (Book book1: list){
+            if (book1.getId() == book.getId()){
+                book1 = book;
+                return list;
+            }
+        }
+        return null;
+    }
 
     public void add(Book newbook) {
         list = getListBook();

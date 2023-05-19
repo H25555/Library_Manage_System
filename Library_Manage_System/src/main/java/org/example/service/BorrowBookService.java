@@ -48,7 +48,12 @@ public class BorrowBookService implements IBorrowBookService {
         listBook = bookService.getListBook();
         LocalDate date = LocalDate.now();
 //        User user = userServices.getUserDetailByPhoneNumber(phonenumber);
-        Book book = bookService.getBookDetail(bookid);
+//        Book book = bookService.getBookDetail(bookid);
+        for (Book book: listBook){
+            if(bookid == book.getId()){
+                book.setQuantity(book.getQuantity()-1);
+            }
+        }
         Borrowbook borrowbook = new Borrowbook();
         int id = 0;
         if (listBorrowBook.size() == 0){
@@ -60,7 +65,6 @@ public class BorrowBookService implements IBorrowBookService {
         borrowbook.setBorrowdate(date);
         borrowbook.setExpDate(date.plusDays(7));
         borrowbook.setUserid(user.getId());
-        book.setQuantity(book.getQuantity() - 1);
         bookService.changeBookStatus(bookid);
         listBorrowBook.add(borrowbook);
         CSVUltis.write(filename1, listBook);
@@ -70,8 +74,13 @@ public class BorrowBookService implements IBorrowBookService {
         listBorrowBook = getBorrowBook();
         listBook = bookService.getListBook();
         Borrowbook borrowbook = getBorrowBookDetail(borrowbookID);
-        Book returnbook = bookService.getBookDetail(borrowbook.getBookid());
-        returnbook.setQuantity(returnbook.getQuantity() + 1);
+//        Book returnbook = bookService.getBookDetail(borrowbook.getBookid());
+//        returnbook.setQuantity(returnbook.getQuantity() + 1);
+        for (Book book : listBook){
+            if (book.getId() == borrowbook.getBookid()){
+                book.setQuantity(book.getQuantity()+1);
+            }
+        }
         listBorrowBook.remove(borrowbook);
         CSVUltis.write(filename, listBorrowBook);
         CSVUltis.write(filename1, listBook);

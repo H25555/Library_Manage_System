@@ -64,7 +64,7 @@ public class CustomerView {
             renderView();
             try{
                 System.out.println("\u001B[34m Select Function: \u001B[0m");
-                String input = scanner.nextLine();
+                String input = scanner.next();
                 int number = Integer.parseInt(input);
                 switch (number){
                     case 1:

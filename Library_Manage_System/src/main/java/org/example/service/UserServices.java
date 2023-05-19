@@ -132,6 +132,7 @@ public class UserServices  {
             if (borrowbook.getExpDate().minusDays(1).equals(LocalDate.now()) || borrowbook.getExpDate().equals(LocalDate.now())){
                 System.out.println(message);
                 System.out.println();
+                break;
             }
         }
     }
